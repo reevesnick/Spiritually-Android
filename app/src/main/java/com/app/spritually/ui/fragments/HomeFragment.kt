@@ -12,12 +12,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
 import com.app.spritually.R
 import com.app.spritually.base.BaseFragment
-import com.app.spritually.helper.ToastMessageHelper
 import java.util.*
 import kotlin.collections.ArrayList
 
