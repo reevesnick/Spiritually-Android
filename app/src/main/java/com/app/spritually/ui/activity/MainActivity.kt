@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.app.spritually.R
 import com.app.spritually.base.BaseActivity
 import com.app.spritually.base.BaseFragment
+import com.app.spritually.ui.fragments.HistoryFragment
 import com.app.spritually.ui.fragments.HomeFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -43,6 +44,9 @@ class MainActivity : BaseActivity() {
                 }
 
                 R.id.history_tab ->{
+                    val fragTransaction = supportFragmentManager.beginTransaction().replace(R.id.container, HistoryFragment())
+                    fragTransaction.addToBackStack(null)
+                    fragTransaction.commit()
                     true
                 }
                 else -> false

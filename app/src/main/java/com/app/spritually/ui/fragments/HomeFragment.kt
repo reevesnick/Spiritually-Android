@@ -14,8 +14,13 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
+import com.abcmcoe.trackpad.helpers.ToastMessageHelper
 import com.app.spritually.R
 import com.app.spritually.base.BaseFragment
+import com.app.spritually.networking.WatsonNetworking
+import com.ibm.cloud.sdk.core.security.IamAuthenticator
+import com.ibm.watson.assistant.v1.Assistant
+import com.ibm.watson.speech_to_text.v1.SpeechToText
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,13 +31,15 @@ class HomeFragment: BaseFragment() {
 
     private lateinit var tts: TextToSpeech
 
+    // IBM Fields
+    private lateinit var ibmTts: com.ibm.watson.text_to_speech.v1.TextToSpeech
+    private lateinit var ibmSst: SpeechToText
+    private lateinit var ibmAssistant: Assistant
+
+
     private var TAG = "HomeFragment"
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         tts = TextToSpeech(context) {
@@ -57,6 +64,26 @@ class HomeFragment: BaseFragment() {
         }
         return view
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    override fun onStart() {
+        super.onStart()
+
+        WatsonNetworking().exectueService("Hello",context!!)
+
+//        startIbmServices()
+    }
+
+//    private fun startIbmServices(){
+//        ibmAssistant = Assistant("10-11-2020", IamAuthenticator(context!!.getString(R.string.assistant_apikey)))
+//        ibmAssistant.serviceUrl = context!!.getString(R.string.assistant_url)
+//
+//        ibmSst = SpeechToText(IamAuthenticator(context!!.getString(R.string.STT_apikey)))
+//        ibmSst.serviceUrl = context!!.getString(R.string.STT_url)
+//
+//        ibmTts = com.ibm.watson.text_to_speech.v1.TextToSpeech(IamAuthenticator(context!!.getString(R.string.TTS_apikey)))
+//        ibmTts.serviceUrl = context!!.getString(R.string.TTS_url)
+//    }
 
     // Start Text to Speech for Local Text to Speech
     private fun startVoiceInput() {
