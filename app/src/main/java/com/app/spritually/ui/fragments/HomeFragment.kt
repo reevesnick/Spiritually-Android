@@ -14,13 +14,17 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ViewModelProvider
 import com.abcmcoe.trackpad.helpers.ToastMessageHelper
 import com.app.spritually.R
 import com.app.spritually.base.BaseFragment
+import com.app.spritually.model.HistoryModel
 import com.app.spritually.networking.WatsonNetworking
+import com.app.spritually.viewmodel.HistoryViewModel
 import com.ibm.cloud.sdk.core.security.IamAuthenticator
 import com.ibm.watson.assistant.v1.Assistant
 import com.ibm.watson.speech_to_text.v1.SpeechToText
+import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -28,6 +32,9 @@ class HomeFragment: BaseFragment() {
     private lateinit var questionInputTextView: TextView
     private lateinit var answerOutputTextView: TextView
     private lateinit var speakButton: Button
+
+    private lateinit var historyViewModel: HistoryViewModel
+
 
     private lateinit var tts: TextToSpeech
 
@@ -40,8 +47,10 @@ class HomeFragment: BaseFragment() {
     private var TAG = "HomeFragment"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
+
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
         tts = TextToSpeech(context) {
             if (it == TextToSpeech.SUCCESS) {
                 val result = tts.setLanguage(Locale.US)
@@ -64,6 +73,7 @@ class HomeFragment: BaseFragment() {
         }
         return view
     }
+
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     override fun onStart() {
@@ -118,6 +128,11 @@ class HomeFragment: BaseFragment() {
                     val result: ArrayList<String> = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
                     questionInputTextView.text = result!![0]
                     resultOutput(result!![0])
+
+                    launch{
+                        val history =  HistoryModel(result[0], result[0],"1/1/2020")
+                        Thread{historyViewModel.insert(history)}
+                    }
                 }
                 
                 else{ questionInputTextView.text = "An unknown error occured" }

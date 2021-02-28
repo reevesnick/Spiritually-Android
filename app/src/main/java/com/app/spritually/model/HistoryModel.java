@@ -1,7 +1,15 @@
 package com.app.spritually.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+
+import javax.annotation.Nonnegative;
+
+@Entity(tableName = "history", primaryKeys = {"id"})
 public class HistoryModel {
 
+
+    private int id;
     private String question;
     private String answer;
     private String date;
@@ -34,5 +42,13 @@ public class HistoryModel {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

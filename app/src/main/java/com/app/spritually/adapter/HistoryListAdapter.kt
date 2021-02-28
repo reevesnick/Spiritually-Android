@@ -94,4 +94,9 @@ class HistoryListAdapter: RecyclerView.Adapter<HistoryListAdapter.HistoryListHol
     override fun getItemCount(): Int {
         return historyModel.size
     }
+
+    fun setLists(lists: List<HistoryModel>){
+        this.historyModel = lists
+        notifyDataSetChanged()
+    }
 }
