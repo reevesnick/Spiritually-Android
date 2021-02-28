@@ -48,7 +48,7 @@ class HomeFragment: BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
+//        historyViewModel = ViewModelProvider(this).get(HistoryViewModel::class.java)
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         tts = TextToSpeech(context) {
@@ -131,7 +131,7 @@ class HomeFragment: BaseFragment() {
 
                     launch{
                         val history =  HistoryModel(result[0], result[0],"1/1/2020")
-                        Thread{historyViewModel.insert(history)}
+//                        Thread{historyViewModel.insert(history)}
                     }
                 }
                 
