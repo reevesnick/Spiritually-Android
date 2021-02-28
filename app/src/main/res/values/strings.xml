@@ -3,4 +3,5 @@
 
     <string name="question">Question</string>
     <string name="answer">Answer</string>
+    <string name="title_activity_home_compose">HomeCompose</string>
 </resources>
