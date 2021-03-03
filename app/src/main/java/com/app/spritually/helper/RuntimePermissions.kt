@@ -1,9 +1,8 @@
-package com.abcmcoe.trackpad.helpers
+package com.app.spritually.helper
 
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import androidx.core.app.ActivityCompat
 
 class RuntimePermissions(private val permissions: Array<String>?, private val mContext: Context?) {

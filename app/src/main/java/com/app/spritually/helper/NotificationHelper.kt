@@ -1,4 +1,4 @@
-package com.abcmcoe.trackpad.helpers
+package com.app.spritually.helper
 
 import android.app.Notification
 import android.app.NotificationChannel

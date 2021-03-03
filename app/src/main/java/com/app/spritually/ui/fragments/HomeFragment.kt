@@ -15,13 +15,12 @@ import android.widget.TextView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModelProvider
-import com.abcmcoe.trackpad.helpers.ToastMessageHelper
+import com.app.spritually.helper.ToastMessageHelper
 import com.app.spritually.R
 import com.app.spritually.base.BaseFragment
 import com.app.spritually.model.HistoryModel
 import com.app.spritually.networking.WatsonNetworking
 import com.app.spritually.viewmodel.HistoryViewModel
-import com.ibm.cloud.sdk.core.security.IamAuthenticator
 import com.ibm.watson.assistant.v1.Assistant
 import com.ibm.watson.speech_to_text.v1.SpeechToText
 import kotlinx.coroutines.launch
