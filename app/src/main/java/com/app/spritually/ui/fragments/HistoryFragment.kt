@@ -1,23 +1,18 @@
 package com.app.spritually.ui.fragments
 
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.RecyclerView
-import com.abcmcoe.trackpad.helpers.ToastMessageHelper
 import com.app.spritually.R
 import com.app.spritually.adapter.HistoryListAdapter
-import com.app.spritually.base.BaseActivity
 import com.app.spritually.base.BaseFragment
 import com.app.spritually.model.HistoryModel
-import com.app.spritually.networking.WatsonNetworking
 import com.app.spritually.viewmodel.HistoryViewModel
 import androidx.lifecycle.Observer
-import java.util.*
 import kotlin.collections.ArrayList
 
 // Kotlin Extension - Observe Data Once
